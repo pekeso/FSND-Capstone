@@ -7,7 +7,11 @@ from flask_migrate import Migrate
 
 load_dotenv()
 
-database_path = os.getenv('DATABASE_PATH') 
+database_path = 'postgresql://{host}:{port}/{database}'.format(
+            host=os.getenv('DATABASE_HOST'),
+            port=os.getenv('PORT'),
+            database=os.getenv('DATABASE_NAME') 
+        )
 
 db = SQLAlchemy()
 
