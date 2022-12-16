@@ -31,7 +31,7 @@ def setup_db(app, database_path=database_path):
             database=os.environ['RDS_DB_NAME'],
         )
     else:
-        app.config["SQLALCHEMY_DATABASE_URI"] = database_path
+        app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:M1uri3THEOvLiPz9YExQa@capstone-db.cmohypx16ee8.us-east-1.rds.amazonaws.com:5432/casting'
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
