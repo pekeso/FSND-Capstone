@@ -10,20 +10,17 @@ load_dotenv()
 
 environment = os.environ['DEV']
 
-# is_aws = True if os.environ.get("AWS_DEFAULT_REGION") else False
+if environment != 'Local':
+    database_path = 'postgresql://{username}:{password}@{host}:{port}/{database}'.format(
+            username=os.environ['POSTGRES_USERNAME'],
+            password=os.environ['POSTGRES_PASSWORD'],
+            host=os.environ['POSTGRES_HOST'],
+            port=os.environ['POSTGRES_PORT'],
+            database=os.environ['POSTGRES_DATABASE'],
+        )
+else:
+    database_path = "postgresql://{host}/{database}".format(host=os.environ['DATABASE_HOST'], database=os.environ['DATABASE_NAME'])
 
-# if environment != 'Local':
-database_path = 'postgresql://{username}:{password}@{host}:{port}/{database}'.format(
-        username=os.environ['POSTGRES_USERNAME'],
-        password=os.environ['POSTGRES_PASSWORD'],
-        host=os.environ['POSTGRES_HOST'],
-        port=os.environ['POSTGRES_PORT'],
-        database=os.environ['POSTGRES_DATABASE'],
-    )
-#     print('aws')
-# else:
-#     database_path = "postgresql://{host}/{database}".format(host=os.environ['DATABASE_HOST'], database=os.environ['DATABASE_NAME'])
-#     print('local')
 
 db = SQLAlchemy()
 
