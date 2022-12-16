@@ -7,11 +7,13 @@ from flask_migrate import Migrate
 
 load_dotenv()
 
-database_path = 'postgresql://{host}:{port}/{database}'.format(
-            host=os.getenv('DATABASE_HOST'),
-            port=os.getenv('PORT'),
-            database=os.getenv('DATABASE_NAME') 
-        )
+database_path = 'postgresql://{username}:{password}@{host}:{port}/{database}'.format(
+        username=os.environ['POSTGRES_USERNAME'],
+        password=os.environ['POSTGRES_PASSWORD'],
+        host=os.environ['POSTGRES_HOST'],
+        port=os.environ['POSTGRES_PORT'],
+        database=os.environ['POSTGRES_DATABASE'],
+    )
 
 db = SQLAlchemy()
 
@@ -21,17 +23,7 @@ setup_db(app)
 '''
 
 def setup_db(app, database_path=database_path):
-    if 'RDS_DB_NAME' in os.environ:
-        app.config['SQLALCHEMY_DATABASE_URI'] = \
-            'postgresql://{username}:{password}@{host}:{port}/{database}'.format(
-            username=os.environ['RDS_USERNAME'],
-            password=os.environ['RDS_PASSWORD'],
-            host=os.environ['RDS_HOSTNAME'],
-            port=os.environ['RDS_PORT'],
-            database=os.environ['RDS_DB_NAME'],
-        )
-    else:
-        app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:M1uri3THEOvLiPz9YExQa@capstone-db.cmohypx16ee8.us-east-1.rds.amazonaws.com:5432/casting'
+    app.config['SQLALCHEMY_DATABASE_URI'] = database_path
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     db.app = app
     db.init_app(app)
