@@ -12,7 +12,7 @@ environment = os.environ['DEV']
 
 # is_aws = True if os.environ.get("AWS_DEFAULT_REGION") else False
 
-if environment is not 'Local':
+if environment != 'Local':
     database_path = 'postgresql://{username}:{password}@{host}:{port}/{database}'.format(
             username=os.environ['POSTGRES_USERNAME'],
             password=os.environ['POSTGRES_PASSWORD'],
