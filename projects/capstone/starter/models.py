@@ -7,16 +7,16 @@ from flask_migrate import Migrate
 
 load_dotenv()
 
-if 'DEV' in os.environ:
-    database_path = "postgresql://{host}/{database}".format(host=os.environ['DATABASE_HOST'], database=os.environ['DATABASE_NAME'])
-else:
-    database_path = 'postgresql://{username}:{password}@{host}:{port}/{database}'.format(
-            username=os.environ['POSTGRES_USERNAME'],
-            password=os.environ['POSTGRES_PASSWORD'],
-            host=os.environ['POSTGRES_HOST'],
-            port=os.environ['POSTGRES_PORT'],
-            database=os.environ['POSTGRES_DATABASE'],
-        )
+# if 'DEV' in os.environ:
+#     database_path = "postgresql://{host}/{database}".format(host=os.environ['DATABASE_HOST'], database=os.environ['DATABASE_NAME'])
+# else:
+database_path = 'postgresql://{username}:{password}@{host}:{port}/{database}'.format(
+        username=os.environ['POSTGRES_USERNAME'],
+        password=os.environ['POSTGRES_PASSWORD'],
+        host=os.environ['POSTGRES_HOST'],
+        port=os.environ['POSTGRES_PORT'],
+        database=os.environ['POSTGRES_DATABASE'],
+    )
 
 db = SQLAlchemy()
 
