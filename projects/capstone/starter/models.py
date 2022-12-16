@@ -4,13 +4,15 @@ from flask import Flask, request, abort, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 from flask_migrate import Migrate
-from app import is_aws
+
 
 load_dotenv()
 
+endpoint = os.environ['API_ENDPOINT']
+
 # is_aws = True if os.environ.get("AWS_DEFAULT_REGION") else False
 
-if is_aws:
+if endpoint:
     database_path = 'postgresql://{username}:{password}@{host}:{port}/{database}'.format(
             username=os.environ['POSTGRES_USERNAME'],
             password=os.environ['POSTGRES_PASSWORD'],

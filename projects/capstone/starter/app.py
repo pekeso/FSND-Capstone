@@ -5,20 +5,6 @@ from sqlalchemy import exc
 from flask_cors import CORS
 from models import setup_db, Movie, Actor
 from auth import AuthError, requires_auth
-import urllib2
-
-
-meta = 'http://169.254.169.254/latest/meta-data/ami-id'
-req = urllib2.Request(meta)
-is_aws = False
-try:
-    response = urllib2.urlopen(req).read()
-    if 'ami' in response:
-        is_aws = True
-    else:
-        is_aws = False
-except Exception as nometa:
-    _msg = 'no metadata, not in AWS'
 
 
 def create_app(test_config=None):
