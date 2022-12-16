@@ -57,7 +57,7 @@ class CastingAgencyTestCase(unittest.TestCase):
             'name': 'Chuck Norris',
             'age': 69,
             'gender': 'male',
-            'Nationality': 'American'
+            'nationality': 'American'
         }
 
         self.updated_actor = {
