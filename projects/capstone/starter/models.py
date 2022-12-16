@@ -20,9 +20,11 @@ if endpoint:
             port=os.environ['POSTGRES_PORT'],
             database=os.environ['POSTGRES_DATABASE'],
         )
+    print('aws')
 else:
     database_path = "postgresql://{host}/{database}".format(host=os.environ['DATABASE_HOST'], database=os.environ['DATABASE_NAME'])
-
+    print('local')
+    
 db = SQLAlchemy()
 
 '''
