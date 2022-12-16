@@ -31,6 +31,12 @@ def create_app(test_config=None):
         return response
 
     # Routes
+    @app.route('/')
+    def health():
+        return jsonify({
+            "success": True,
+            "message": "Welcome to the Casting Agency API v1.0"
+        })
 
     # -----------------------------------------------------------------------
     #                                 Movies                                |
