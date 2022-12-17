@@ -59,6 +59,10 @@ There are 3 roles: casting assistant, casting director and executive producer
     - All permissions a Casting Director has 
     - Add or delete a movie from the database
 
+### Authentication
+
+To thoroughly test the application, we'll need the access tokens for the different roles.
+
 ### Testing the app
 
 To test the app, one must run the following commands:
@@ -286,5 +290,14 @@ We paste the appropriate access tokens at each prompt and press enter to validat
   "success": true,
   "deleted": id
 }
+```
 
+### Deployment
 
+This project has been deployed on AWS Elastic Beanstalk with the eb CLI. 
+
+This cloud version is served an AWS RDS Postgres database.
+
+The base URL endpoint:
+
+[http://casting-dev.us-east-1.elasticbeanstalk.com/](http://casting-dev.us-east-1.elasticbeanstalk.com/)
